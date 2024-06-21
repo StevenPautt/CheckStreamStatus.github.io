@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Check Stream Status</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        
+        th,
+        td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        
+        #lastCheck {
+            font-style: italic;
+            color: #777;
+        }
+        
+        .status-live {
+            color: green;
+        }
+        
+        .status-offline {
+            color: red;
+        }
+        
+        .status-error {
+            color: orange;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Check Stream Status</h1>
+        <input type="file" class="form-control mb-3" id="fileInput">
+        <button class="btn btn-primary mb-3" id="uploadButton">Check Streams</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Username</th>
+                    <th>Status</th>
+                    <th>Last Check</th>
+                </tr>
+            </thead>
+            <tbody id="resultBody">
+                <!-- Rows will be inserted here -->
+            </tbody>
+        </table>
+        <p class="text-muted">Last Check: <span id="lastCheck">-</span></p>
+        <a href="#" id="logout" class="btn btn-secondary">Logout</a>
+    </div>
+    <script src="main.js" defer></script>
+</body>
+
+</html>
