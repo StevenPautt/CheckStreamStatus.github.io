@@ -2,22 +2,25 @@ let lastCheckTime = null;
 let streamsData = {};
 
 document.getElementById('uploadButton').addEventListener('click', async() => {
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    if (!file) {
-        alert('Please select a file');
-        return;
-    }
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    if (!file) {
+        alert('Please select a file');
+        return;
+    }
 
-    const text = await file.text();
-    const usernames = cleanUsernames(text);
-    for (const username of usernames) {
-        const status = await getStreamStatus(username);
-        updateTable(username, status);
-        streamsData[username] = { status, lastCheck: new Date().toLocaleTimeString() };
-    }
-    updateLastCheck();
-    saveStreamsData();
+    document.getElementById('resultBody').innerHTML = ''; // Esto borra la tabla
+    streamsData = {}; // Opcional: También resetea los datos en memoria si solo quieres mostrar los de la nueva carga
+
+    const text = await file.text();
+    const usernames = cleanUsernames(text);
+    for (const username of usernames) {
+        const status = await getStreamStatus(username);
+        updateTable(username, status); // Esta función añade filas a la tabla ahora vacía
+        streamsData[username] = { status, lastCheck: new Date().toLocaleTimeString() };
+    }
+    updateLastCheck();
+    saveStreamsData();
 });
 
 setInterval(async() => {
